@@ -4,6 +4,8 @@ const app = express();
 const db = require("./models/index");
 const custroutes = require("./routes/customer.routes");
 const admroutes = require("./routes/admin.routes");
+const crtroutes = require("./routes/cart.routes");
+
 
 var corsOptions = {
   origin: "http://localhost:8081",
@@ -19,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/cust", custroutes);
 app.use("/api/adm", admroutes);
+app.use("/api/crt", crtroutes);
 
 db.sequelize
   .sync()
