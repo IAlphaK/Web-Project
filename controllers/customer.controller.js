@@ -30,22 +30,39 @@ exports.create = (req, res) => {
       });
     });
 };
-// Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+  const page = req.query.page ? parseInt(req.query.page) : 1;
+  const limit = 10;
+  const offset = (page - 1) * limit;
+  const minAge = req.query.minAge ? parseInt(req.query.minAge) : null;
+  const maxAge = req.query.maxAge ? parseInt(req.query.maxAge) : null;
+  const condition = {
+    [Op.and]: [
+      title ? { title: { [Op.like]: `%${title}%` } } : null,
+      minAge ? { age: { [Op.gte]: minAge } } : null,
+      maxAge ? { age: { [Op.lte]: maxAge } } : null,
+    ].filter(Boolean),
+  };
 
-  cust.findAll({ where: condition })
+  cust.findAll({
+    where: condition,
+    limit: limit,
+    offset: offset,
+    attributes: ['id', 'name', 'address', 'age', 'createdAt', 'updatedAt']
+  })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials.",
+          err.message || "Some error occurred while retrieving data.",
       });
     });
 };
+
+
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
