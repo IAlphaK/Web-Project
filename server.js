@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // redirect root URL to home.html
 app.get('/', (req, res) => {
-  res.status(200).sendFile('home.html', {root: __dirname + '/pages'});
+  res.status(200).sendFile('index.html', {root: __dirname + '/pages'});
 });
 
 
