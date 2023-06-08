@@ -3,16 +3,18 @@ const cors = require("cors");
 const app = express();
 const db = require("./models/index");
 const custroutes = require("./routes/customer.routes");
-const admroutes = require("./routes/inventory.routes");
+const invroutes = require("./routes/inventory.routes");
 const crtroutes = require("./routes/cart.routes");
 const { handle404Error } = require('./errorHandlers');
+
 
 var corsOptions = {
   origin: "http://localhost:8081",
 };
 
 app.use(cors(corsOptions));
-app.use(express.static('pages'));
+app.use(express.static(__dirname + '/pages'));
+
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -27,7 +29,7 @@ app.get('/', (req, res) => {
 
 
 app.use("/api/cust", custroutes);
-app.use("/api/adm", admroutes);
+app.use("/api/inv", invroutes);
 app.use("/api/crt", crtroutes);
 
 app.use(handle404Error);

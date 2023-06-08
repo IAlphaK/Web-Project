@@ -1,26 +1,20 @@
-const cust = require("../controllers/customer.controller.js");
+const express = require('express');
+const router = express.Router();
+const customerController = require('../controllers/customer.controller');
 
-var router = require("express").Router();
+// Create a new customer
+router.post('/', customerController.createCustomer);
 
-// Create a new Tutorial
-router.post("/", cust.create);
+// Get all customers
+router.get('/', customerController.getAllCustomers);
 
-// Retrieve all Tutorials
-router.get("/", cust.findAll);
+// Get a single customer by ID
+router.get('/:customerId', customerController.getCustomerById);
 
-// Retrieve all published Tutorials
-router.get("/published", cust.findAllPublished);
+// Update a customer
+router.put('/:customerId', customerController.updateCustomer);
 
-// Retrieve a single Tutorial with id
-router.get("/:id", cust.findOne);
-
-// Update a Tutorial with id
-router.put("/:id", cust.update);
-
-// Delete a Tutorial with id
-router.delete("/:id", cust.delete);
-
-// Delete all Tutorials
-router.delete("/", cust.deleteAll);
+// Delete a customer
+router.delete('/:customerId', customerController.deleteCustomer);
 
 module.exports = router;

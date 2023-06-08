@@ -1,26 +1,20 @@
-const crt = require("../controllers/cart.controller.js");
+const express = require('express');
+const router = express.Router();
+const cartController = require('../controllers/cart.controller');
 
-var router = require("express").Router();
+// Create a new cart item
+router.post('/', cartController.createCartItem);
 
-// Create a new Tutorial
-router.post("/", crt.create);
+// Get all cart items
+router.get('/', cartController.getAllCartItems);
 
-// Retrieve all Tutorials
-router.get("/", crt.findAll);
+// Get a single cart item by ID
+router.get('/:cartItemId', cartController.getCartItemById);
 
-// Retrieve all published Tutorials
-router.get("/published", crt.findAllPublished);
+// Update a cart item
+router.put('/:cartItemId', cartController.updateCartItem);
 
-// Retrieve a single Tutorial with id
-router.get("/:id", crt.findOne);
-
-// Update a Tutorial with id
-router.put("/:id", crt.update);
-
-// Delete a Tutorial with id
-router.delete("/:id", crt.delete);
-
-// Delete all Tutorials
-router.delete("/", crt.deleteAll);
+// Delete a cart item
+router.delete('/:cartItemId', cartController.deleteCartItem);
 
 module.exports = router;
