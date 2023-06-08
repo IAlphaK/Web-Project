@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 const db = require("./models/index");
 const custroutes = require("./routes/customer.routes");
-const admroutes = require("./routes/admin.routes");
+const admroutes = require("./routes/inventory.routes");
 const crtroutes = require("./routes/cart.routes");
 const { handle404Error } = require('./errorHandlers');
 
