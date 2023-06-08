@@ -20,5 +20,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.cust = require("./customer.model.js")(sequelize, Sequelize);
+db.crt = require("./cart.model.js")(sequelize, Sequelize);
+db.inv = require("./inventory.model.js")(sequelize, Sequelize);
 
 module.exports = db;
