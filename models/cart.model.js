@@ -9,6 +9,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING(100),
       allowNull: false
     },
+    PPrice: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
     PQuantity: {
       type: Sequelize.INTEGER,
       allowNull: false

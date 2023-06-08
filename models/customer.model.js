@@ -1,3 +1,5 @@
+const { DataTypes } = require('sequelize');
+
 module.exports = (sequelize, Sequelize) => {
   const Customer = sequelize.define("cust", {
     customerId: {
@@ -17,6 +19,12 @@ module.exports = (sequelize, Sequelize) => {
     cPhone: {
       type: Sequelize.STRING(11),
     },
+  });
+
+  const Cart = require('./cart.model.js')(sequelize, Sequelize);
+  Customer.belongsTo(Cart, {
+    foreignKey: 'orderId',
+    as: 'cart',
   });
 
   return Customer;

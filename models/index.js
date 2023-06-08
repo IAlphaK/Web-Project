@@ -1,5 +1,4 @@
 const dbConfig = require("../config/db.config");
-
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -19,8 +18,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.cust = require("./customer.model.js")(sequelize, Sequelize);
-db.crt = require("./cart.model.js")(sequelize, Sequelize);
-db.inv = require("./inventory.model.js")(sequelize, Sequelize);
+db.cust = require("./customer.model.js")(db.sequelize, Sequelize);
+db.crt = require("./cart.model.js")(db.sequelize, Sequelize);
+db.inv = require("./inventory.model.js")(db.sequelize, Sequelize);
 
 module.exports = db;

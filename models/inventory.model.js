@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false
     },
+    PPrice: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
     PCategory: {
       type: Sequelize.ENUM('Casual', 'EW'),
       allowNull: false
